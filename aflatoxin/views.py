@@ -65,7 +65,7 @@ class ToxinList(APIView):
     permission_classes = [permissions.AllowAny]
     def get(self,request,id,format=None):
         with connection.cursor() as cursor:
-            cursor.execute(""" SELECT * from public."TOXIN_LIST" WHERE "CROP_ID"={crop_id} """.format(crop_id=id))
+            cursor.execute(""" SELECT * from toxin_warehouse.TOXIN_LIST WHERE "CROP_ID"={crop_id} """.format(crop_id=id))
             toxin_list=dictfetchall(cursor)
         return Response({
                 'code':200,
