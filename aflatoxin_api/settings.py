@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-import pyodbc
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -86,15 +85,17 @@ DATABASES = {
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # }
     'default': {
-        'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'rndanalyticsteamdevsqldb',
-        'USER':'lav.raj@effem.com',
-        'PASSWORD': 'Greatplace2work',
-        'HOST': 'marsanalyticsdevsqlsrv.database.windows.net',
-        #'PORT':5432,
-        'OPTIONS': {
-            'driver': 'ODBC Driver 13 for SQL Server',
-        },
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'aflatoxin',
+        'USER':'postgres',
+        'PASSWORD': 'Root@123',
+        'HOST': 'localhost',
+        'PORT':5432,
+        #'PORT':1433,
+        # 'OPTIONS': {
+        #     'driver': 'ODBC Driver 13 for SQL Server',
+        #     'host_is_server': True
+        # }
     }
 }
 
