@@ -37,13 +37,27 @@ class AflatoxinCropList(APIView):
     permission_classes = [permissions.AllowAny]
     def get(self,request,format=None):
         with connection.cursor() as cursor:
-            cursor.execute("""SELECT 
-            * from toxin_warehouse.CROP_LIST""")
+            cursor.execute(""" SELECT * FROM toxin_warehouse.CROP_LIST """)
             crop_list=dictfetchall(cursor)
+
+        crop_name = []
+        final_crop_list = []
+        grouped_data = {}
+        for item in crop_list:
+            if item["CROP_NAME"] not in crop_name:
+                crop_name.append(item["CROP_NAME"])
+
+        for item in crop_name:
+            grouped_data[item] = []
+            for data in crop_list:
+                if item == data["CROP_NAME"]:
+                    grouped_data[item].append(data)
+
+
         return Response({
                 'code':200,
                 'status':True,
-                'data':crop_list,
+                'data':grouped_data,
                 'message':"Crop List Fetched Successfully."
         },status=status.HTTP_200_OK)
 
@@ -51,12 +65,11 @@ class ToxinList(APIView):
     permission_classes = [permissions.AllowAny]
     def get(self,request,format=None):
         with connection.cursor() as cursor:
-            cursor.execute("""SELECT 
-            * from toxin_warehouse.TOXIN_LIST""")
+            cursor.execute(""" SELECT * from toxin_warehouse.TOXIN_LIST """)
             toxin_list=dictfetchall(cursor)
         return Response({
                 'code':200,
                 'status':True,
                 'data':toxin_list,
-                'message':"Crop List Fetched Successfully."
+                'message':"Toxin List Fetched Successfully."
         },status=status.HTTP_200_OK)
