@@ -73,3 +73,17 @@ class ToxinList(APIView):
                 'data':toxin_list,
                 'message':"Toxin List Fetched Successfully."
         },status=status.HTTP_200_OK)
+
+
+class AflatoxinKPIList(APIView):
+    permission_classes = [permissions.AllowAny]
+    def get(self,request,format=None):
+        with connection.cursor() as cursor:
+            cursor.execute(""" SELECT * from toxin_warehouse.KPI_LIST """)
+            kpl_list=dictfetchall(cursor)
+        return Response({
+                'code':200,
+                'status':True,
+                'data':kpl_list,
+                'message':"KPL List Fetched Successfully."
+            },status=status.HTTP_200_OK)
