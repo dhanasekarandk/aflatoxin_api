@@ -1,3 +1,4 @@
+from datetime import date
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -116,6 +117,11 @@ class AflatoxinHomeFilter(APIView):
     permission_classes = [permissions.AllowAny]
     def post(self,request,format=None):
         try:
+            corn_id     = request.data.get("corn_id")
+            toxin_id    = request.data.get("toxin_id")
+            year        = request.data.get("year")
+            seasons     = request.data.get("seasons")
+            date        = request.data.get("date")
             with connection.cursor() as cursor:
                 cursor.execute("""  """)
         except Exception as e:
