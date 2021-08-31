@@ -64,9 +64,9 @@ class AflatoxinCropList(APIView):
             return Response({
                 'code':400,
                 'status':'Failed',
-                 'message':"Failed",
+                'message':"Failed",
                 'data':str(e)
-            })
+            },status=status.HTTP_400_BAD_REQUEST)
 
 class ToxinList(APIView):
     permission_classes = [permissions.AllowAny]
@@ -85,9 +85,9 @@ class ToxinList(APIView):
             return Response({
                 'code':400,
                 'status':'Failed',
-                 'message':"Failed",
+                'message':"Failed",
                 'data':str(e)
-            })
+            },status=status.HTTP_400_BAD_REQUEST)
 
 
 class AflatoxinKPIList(APIView):
@@ -107,9 +107,9 @@ class AflatoxinKPIList(APIView):
             return Response({
                 'code':400,
                 'status':'Failed',
-                 'message':"Failed",
+                'message':"Failed",
                 'data':str(e)
-            })
+            },status=status.HTTP_400_BAD_REQUEST)
 
 
 class AflatoxinHomeFilter(APIView):
@@ -122,6 +122,6 @@ class AflatoxinHomeFilter(APIView):
             return Response({
                 'code':400,
                 'status':'Failed',
-                 'message':"Failed",
+                'message':"Failed",
                 'data':str(e)
-            })
+            },status=status.HTTP_400_BAD_REQUEST)
